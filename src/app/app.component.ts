@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
+import { MapComponent } from './component/map/map.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [MapComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Frische_Luft';
+  panelOpen = false;
+
+  togglePanel(): void {
+    this.panelOpen = !this.panelOpen;
+  }
 }
