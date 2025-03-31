@@ -1,0 +1,14 @@
+<div class="chart-container">
+  <ngx-charts-bar-horizontal
+    [results]="barChartData()"
+    [xScaleMax]="MAX_AQICN"
+    [xAxis]="true"
+    [xAxisLabel]="'PM2.5 Micrograms/Cubic-Meter'"
+    [showXAxisLabel]="true"
+    [yAxis]="true"
+    [yAxisLabel]="'City'"
+    [showDataLabel]="true"
+    [showYAxisLabel]="true"
+    [customColors]="customColors()">
+  </ngx-charts-bar-horizontal>
+</div>
