@@ -1,3 +1,9 @@
+// *** side-panel ***
+
+$panel-width: 30rem;
+$panel-leftmost: -26rem;
+$mobile-portrait-reduction: 10rem;
+
 .container {
   position: absolute;
   top: 0;
@@ -15,16 +21,22 @@
 .side-panel {
   position: fixed;
   top: 0;
-  left: -28rem; /* Hidden is default */
-  width: 30rem;
+  left: $panel-leftmost; /* Hidden is default */
+  width: $panel-width;
   height: 100%;
   background-color: rgba(245, 245, 245, 0.9);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   padding: 1rem;
   transition: left 0.3s ease-in-out;
   z-index: 1000;
+
   &.open {
     left: 0; /* Panel slides over map */
+  }
+
+  @media only screen and (max-width: 480px) and (orientation: portrait) {
+    left: calc($panel-leftmost + $mobile-portrait-reduction);
+    width: calc($panel-width - $mobile-portrait-reduction); /* Apply this width for iPhones in portrait */
   }
 }
 
@@ -39,7 +51,46 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 1.5rem;
+
   &:hover {
     background-color: #005a9e;
   }
+}
+
+// *** select city ***
+.city-list {
+  max-height: 300px; /* Show about 10 cities (30px each) */
+  overflow-y: auto; /* Adds scroll capability */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.city-item {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.city-item:hover {
+  background-color: #e0e0e0;
+}
+
+.city-item:last-child {
+  border-bottom: none;
+}
+
+.panel-filter {
+  margin-top: 5rem;
+
+  .city-select {
+    width: 100%;
+    --p-inputtext-color: #000;
+    --p-inputtext-background: #FFF;
+  }
+}
+
+.error {
+  color: red;
 }

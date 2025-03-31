@@ -17,8 +17,26 @@
         </span>
       }
     </button>
-    <h2>Control Panel</h2>
-    <p>Let's configure the map</p>
+
+    <div class="panel-filter">
+
+      <h4>Particulate Matter 2.5 &micro;g/m&#179; Air Quality Index China</h4>
+
+      <div class="city-select">
+        <p-autocomplete [(ngModel)]="value" [suggestions]="items" (completeMethod)="search($event)"
+                        (onSelect)="selectCity($event)" placeholder="Search for a City!"
+                        [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"/>
+
+        @if (selectedCityIsEmpty()) {
+          <p class="error">No pollution statistic could be found</p>
+        }
+      </div>
+
+      @if (selectedCities().length > 0) {
+        <app-chart [selectedCities]="selectedCities()"></app-chart>
+      }
+
+    </div>
   </div>
 
 </div>
