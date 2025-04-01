@@ -1,6 +1,10 @@
 # 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 18.2.13.
+
+## Node version
+
+For best results install at least version 20 of Node
 
 ## Development server
 
@@ -44,6 +48,8 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
+Tip: api.service.spec has 2 tests
+
 ## Running end-to-end tests
 
 For end-to-end (e2e) testing, run:
@@ -57,3 +63,32 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+<h1> Fresh Air Application: steps, architecture and challenges </h1>
+
+## (Development) Steps 
+
+* Research public/api endpoints and choose theme
+* UI: map and sliding panel
+* Heatmap for 1 city
+* Autocomplete
+* Heatmap for 10 cities
+* Normalisation of autocomplete list options: city %% state %% country
+* Mapping and normalisation between openstreetmap and airvisual url parameters: city, state and country e.g. Baden-Württemberg -> Baden-Wuerttemberg
+* Legend on the map
+* Swimlane ngx chart - horizontal barchart configuration
+
+## Architecture
+* To improve autocomplete city air selection speed: use cityService cached entry if present in name/value Map
+* To improve heatmap display speed: use MapComponent cached entry if present in name/value Map
+* Signalling used when city selected to show AppComponent (side-panel) error when city not found or error  
+* Signalling used when city selected to show heatmap and update cache in MapComponent
+* Heatmap cities represented in 1 layer (cache contents plus new city selection) rather than 1 layer per city to minimize resource use
+* Heatmap Layer configuration for meaningful display: Air Index max value reduced (500 -> 150) to show visual heat differences, useful zoom perspective and heat radius to cover city in MapComponent
+
+## Challenges
+
+* Time taken to find a theme of interest from the public/api - also thought about good habit tracker dashboard showing github-like representation of number of puzzles solved in a day 
+* Api chosen turned out to be limited, offering only 1 useful endpoint with aqicn pollution index
+* Integrating leaflet-heatmap into angular - "@dvina/ngx-leaflet-heat" helped
+* Configuring heatlayer attributes to differentiate low pollution cities from high polluters
