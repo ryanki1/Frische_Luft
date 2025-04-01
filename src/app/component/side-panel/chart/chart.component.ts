@@ -1,5 +1,5 @@
 import { Component, computed, input, Signal } from '@angular/core';
-import { LegendPosition, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { ADDRESS_SEPARATOR, MAX_AQICN } from '../../../shared/constants';
 import { capitalize } from '../../../shared/utilities';
 
@@ -26,12 +26,8 @@ export class ChartComponent {
   });
   colorScheme = '#5AA454, #A10A28, #C7B42C, #AAAAAA';
   customColors = computed(() => {
-    return {
-      name: 'aqiColorScheme',
-      selectable: true,
-      group: ScaleType.Ordinal,
-      domain: this.barChartData().map((d) => d.color), // Assign dynamic colors
-    };
+    return this.barChartData().map((d) =>
+      ({name: d.name, value: d.color}));
   });
 
   // Return heatmap-based color for AQICN

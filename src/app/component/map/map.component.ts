@@ -70,14 +70,11 @@ export class MapComponent implements OnInit {
       .subscribe((cityAir: AirDisplayCity | undefined) => {
         if (cityAir) {
           if (this.displayedCities.has(cityAir.data.city)) {
-            console.log(`${cityAir.data.city} is already displayed on the map.`);
-            console.log(Array.from(this.displayedCities.entries()));
             this.centerMap(cityAir);
             return;
           }
           this.displayedCities.set(cityAir.data.city, cityAir);
           this.addHeatLayer(cityAir);
-          console.log(Array.from(this.displayedCities.entries()));
           this.centerMap(cityAir);
         }
       });
@@ -114,7 +111,6 @@ export class MapComponent implements OnInit {
   }
 
   private centerMap(cityAir: AirDisplayCity): void {
-    console.log(`Centering map on: ${cityAir.data.city}`);
     this.map!.setView([cityAir.data.location.coordinates[1], cityAir.data.location.coordinates[0]], 4);
   }
 
