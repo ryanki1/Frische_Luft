@@ -6,6 +6,12 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 For best results install at least version 20 of Node
 
+## Project setup
+
+* Pull github project: git clone https://github.com/ryanki1/Frische_Luft.git
+* Goto project directory: cd Frische_Luft
+* Install dependencies: npm install or npm install --legacy-peer-deps
+
 ## Development server
 
 To start a local development server, run:
